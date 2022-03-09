@@ -4,6 +4,8 @@ pipeline {
     WORKSPACE = "${env.WORKSPACE}"
   }
   tools {
+    maven 'localMaven'
+    jdk 'localJdk'
     terraform 'terraform-1.0.3'
   }
  
