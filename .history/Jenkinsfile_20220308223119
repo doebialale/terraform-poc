@@ -11,7 +11,7 @@ pipeline {
  
   stages{
     stage('Git Checkout'){
-        sh "https://github.com/doebialale/terraform-poc.git"
+         https://github.com/doebialale/terraform-poc.git
     }
      
     stage('Terraform Init'){

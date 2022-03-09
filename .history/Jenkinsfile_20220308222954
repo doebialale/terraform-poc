@@ -11,17 +11,17 @@ pipeline {
  
   stages{
     stage('Git Checkout'){
-        sh "https://github.com/doebialale/terraform-poc.git"
-    }
+         https://github.com/doebialale/terraform-poc.git
+     }
      
-    stage('Terraform Init'){
+     stage('Terraform Init'){
          sh "terraform init"
          
-    }
+     }
      
-    stage('Terraform Apply')
-      { 
-        sh "terrform apply --auto-approve"
-      }
-  }
+     stage('Terraform Apply'){
+ 
+         sh "terrform apply --auto-approve"
+     }
+ }
 }
