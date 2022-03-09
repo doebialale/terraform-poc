@@ -1,0 +1,26 @@
+pipeline {
+  agent any
+  
+  tools {
+    terraform 'Terraform 1.0.3'
+  }
+
+  stages{
+
+    stage('Terraform Init'){
+      steps
+         sh 'terraform init'
+         
+    }
+    stage('Git Checkout'){
+        sh "https://github.com/doebialale/terraform-poc.git"
+    }
+     
+
+     
+    stage('Terraform Apply')
+      { 
+        sh "terrform apply --auto-approve"
+      }
+  }
+}
