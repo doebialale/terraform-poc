@@ -8,8 +8,8 @@ pipeline {
     }
     
     environment {
-        AWS_ACCESS_KEY_ID     = credentials('AKIscscsvsB5KM')
-        AWS_SECRET_ACCESS_KEY = credentials('sscscsvdvdvssds')
+        AWS_ACCESS_KEY_ID     = credentials('AKIfjscscscdhKM')
+        AWS_SECRET_ACCESS_KEY = credentials('scsbtdehsedhZKCXghads')
         TF_IN_AUTOMATION      = '1'
     }
 
@@ -22,6 +22,7 @@ pipeline {
                 sh 'terraform init -input=false'
                 sh 'terraform workspace select ${environment}'
                 sh "terraform plan -input=false -out tfplan -var 'version=${params.version}' --var-file=environments/${params.environment}.tfvars"
+                sh 'terraform show -no-color tfplan > tfplan.txt'
             }
         }
 
@@ -34,7 +35,6 @@ pipeline {
 
             steps {
                 script {
-                    def plan = readFile 'tfplan.txt'
                     input message: "Do you want to apply the plan?",
                         parameters: [text(name: 'Plan', description: 'Please review the plan', defaultValue: plan)]
                 }
@@ -48,9 +48,4 @@ pipeline {
         }
     }
 
-    post {
-        always {
-            archiveArtifacts artifacts: 'tfplan.txt'
-        }
-    }
 }
