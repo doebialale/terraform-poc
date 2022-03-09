@@ -10,10 +10,7 @@ pipeline {
   }
  
   stages{
-    stage('Git Checkout'){
-        sh "https://github.com/doebialale/terraform-poc.git"
-    }
-     
+
     stage('Terraform Init'){
          sh "terraform init"
          
