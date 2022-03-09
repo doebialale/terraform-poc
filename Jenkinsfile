@@ -6,55 +6,22 @@ pipeline {
   tools {
     maven 'localMaven'
     jdk 'localJdk'
+    terraform 'terraform-1.0.3'
   }
-  stages {
-    stage('Build') {
-      steps {
-        sh 'mvn clean package'
-      }
-      post {
-        success {
-          echo ' now Archiving '
-          archiveArtifacts artifacts: '**/*.war'
-        }
-      }
+ 
+  stages{
+    stage('Git Checkout'){
+        sh "https://github.com/doebialale/terraform-poc.git"
     }
-    stage('SonarQube Scan') {
-      steps {
-        sh """mvn clean verify sonar:sonar \
-  -Dsonar.projectKey=sonar \
-  -Dsonar.host.url=http://127.0.0.1:9000 \
-  -Dsonar.login=88aa39bf03cbbc6a74c15fe9ea16633b519a6959"""
-      }
+     
+    stage('Terraform Init'){
+         sh "terraform init"
+         
     }
-    stage('Upload to Artifactory') {
-      steps {
-        sh "mvn clean deploy -DskipTests"
+     
+    stage('Terraform Apply')
+      { 
+        sh "terrform apply --auto-approve"
       }
-
-    }
-    stage('Deploy to DEV') {
-      environment {
-        HOSTS = "dev"
-      }
-      steps {
-        sh "ansible-playbook ${WORKSPACE}/deploy.yaml --extra-vars \"hosts=$HOSTS workspace_path=$WORKSPACE\""
-      }
-
-    }
-    stage('Approval') {
-      steps {
-        input('Do you want to proceed?')
-      }
-    }
-    stage('Deploy to PROD') {
-      environment {
-        HOSTS = "prod"
-      }
-      steps {
-        sh "ansible-playbook ${WORKSPACE}/deploy.yaml --extra-vars \"hosts=$HOSTS workspace_path=$WORKSPACE\""
-      }
-    }
   }
-
 }
