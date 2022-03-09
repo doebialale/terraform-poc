@@ -1,10 +1,14 @@
-pipeline{
-    
-    agent any
-    
-    tools {
-  terraform 'terraform-1.0.3'
-}
+pipeline {
+  agent any
+  environment {
+    WORKSPACE = "${env.WORKSPACE}"
+  }
+  tools {
+    maven 'localMaven'
+    jdk 'localJdk'
+    terraform 'terraform-1.0.3'
+  }
+ 
  stages{
      
      stage('Git Checkout'){
