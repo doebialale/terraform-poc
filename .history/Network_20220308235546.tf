@@ -1,4 +1,4 @@
-resource "aws_vpc" "testers" {
+resource "aws_vpc" "teste" {
     cidr_block = "10.0.0.0/16"
     tags = {
         Name = "S2S VPC"
