@@ -8,8 +8,8 @@ pipeline {
     }
     
     environment {
-        AWS_ACCESS_KEY_ID     = credentials('AKIfjscscscdhKM')
-        AWS_SECRET_ACCESS_KEY = credentials('scsbtdehsedhZKCXghads')
+        AWS_ACCESS_KEY_ID     = credentials('AKIfjjdhdhKM')
+        AWS_SECRET_ACCESS_KEY = credentials('8/EkdehbtdehsedhZKCXghads')
         TF_IN_AUTOMATION      = '1'
     }
 
@@ -48,4 +48,9 @@ pipeline {
         }
     }
 
+    post {
+        always {
+            archiveArtifacts artifacts: 'tfplan.txt'
+        }
+    }
 }
