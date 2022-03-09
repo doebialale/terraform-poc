@@ -25,7 +25,8 @@ pipeline {
         sh 'terraform apply --auto-approve'
       }        
          
-    }
+    }     
+    stage('Terraform Apply')
 
   }
 }
