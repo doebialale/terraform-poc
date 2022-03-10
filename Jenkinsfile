@@ -26,6 +26,18 @@ pipeline {
       }        
          
     }
+    stage('Terraform Send to Dev'){
+      steps{
+        sh 'terraform apply --auto-approve'
+      }        
+         
+    }    
+    stage('Terraform Change workspace'){
+      steps{
+        sh 'terraform workspace ebi'
+      }        
+         
+    }
 
     stage('Approval') {
       steps {
@@ -33,7 +45,7 @@ pipeline {
       }
     }
 
-    stage('Terraform Apply'){
+    stage('Terraform Prod'){
       steps{
         sh 'terraform apply --auto-approve'
       }        
