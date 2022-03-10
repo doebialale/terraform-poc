@@ -20,7 +20,7 @@ pipeline {
       }        
          
     }
-    stage('Container Build'){
+    stage('Container build'){
       steps{
         sh 'docker run -d -p 80:80 --name CentOS CentOS'
       }        

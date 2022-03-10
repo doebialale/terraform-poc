@@ -27,7 +27,6 @@ pipeline {
          
     }
 
-
     stage('Terraform Prod'){
       steps{
         sh 'terraform apply --auto-approve'

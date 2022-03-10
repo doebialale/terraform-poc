@@ -16,13 +16,13 @@ pipeline {
      
     stage('Docker Build'){
       steps{
-        sh 'docker build -t CentOS .'
+        sh 'docker build -t flask/app:v1 .'
       }        
          
     }
-    stage('Container Build'){
+    stage('Terraform Plan'){
       steps{
-        sh 'docker run -d -p 80:80 --name CentOS CentOS'
+        sh 'terraform plan'
       }        
          
     }

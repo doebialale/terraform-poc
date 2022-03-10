@@ -20,14 +20,6 @@ pipeline {
       }        
          
     }
-    stage('Container Build'){
-      steps{
-        sh 'docker run -d -p 80:80 --name CentOS CentOS'
-      }        
-         
-    }
-
-
     stage('Terraform Prod'){
       steps{
         sh 'terraform apply --auto-approve'

@@ -20,9 +20,9 @@ pipeline {
       }        
          
     }
-    stage('Container Build'){
+    stage('Terraform Plan'){
       steps{
-        sh 'docker run -d -p 80:80 --name CentOS CentOS'
+        sh 'docker run -d -p 80:80 --name flask-app flask/app:v1'
       }        
          
     }
