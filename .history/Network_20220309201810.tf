@@ -1,4 +1,4 @@
-resource "aws_vpc" "afeez" {
+resource "aws_vpc" "testers" {
     cidr_block = "10.1.0.0/16"
     tags = {
         Name = "testers"

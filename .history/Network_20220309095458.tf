@@ -1,18 +1,18 @@
-resource "aws_vpc" "afeez" {
+resource "aws_vpc" "testers" {
     cidr_block = "10.1.0.0/16"
     tags = {
         Name = "testers"
     }
 }
 
-resource "aws_subnet"     "AZ1PUB1" {
-    cidr_block = var.PubSN1Cidr
-    vpc_id = aws_vpc.S2S.id
-    availability_zone = "${var.AZ1}"
-    map_public_ip_on_launch = "true"
-    tags = {Name = "AZ1 Pub SN 1"
-    }
-}
+# resource "aws_subnet"     "AZ1PUB1" {
+#     cidr_block = var.PubSN1Cidr
+#     vpc_id = aws_vpc.S2S.id
+#     availability_zone = "${var.AZ1}"
+#     map_public_ip_on_launch = "true"
+#     tags = {Name = "AZ1 Pub SN 1"
+#     }
+# }
 # resource "aws_subnet" "AZ2PUB1" {
 #     cidr_block = var.PubSN2Cidr
 #     vpc_id = aws_vpc.S2S.id
